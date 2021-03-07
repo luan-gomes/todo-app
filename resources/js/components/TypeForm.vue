@@ -1,32 +1,60 @@
 <template>
-  <form>
-    <div class="form-group">
-      <label for="name">Nome do tipo de tarefa</label>
-      <input v-model="form.name" type="text" class="form-control" id="name" />
-      <small id="emailHelp" class="form-text text-muted"
-        >Nunca vamos compartilhar seu email, com ninguém.</small
-      >
+  <div class="main-container">
+    <h1 class="main-title">Criar tipo de tarefa</h1>
+    <div class="component-container">
+      <form @submit.prevent="saveType">
+        <div class="form-group">
+          <label for="name">Nome do tipo de tarefa</label>
+          <input
+            v-model="type.name"
+            type="text"
+            class="form-control"
+            id="name"
+          />
+        </div>
+        <div class="d-flex flex-row">
+          <div class="p-2">
+            <button type="submit" class="btn btn-success">Salvar</button>
+          </div>
+          <div class="p-2">
+            <button class="btn btn-light">Cancelar</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="row">
-      <div class="col">
-        <button type="submit" class="btn btn-success">Enviar</button>
-      </div>
-      <div class="col">
-        <button class="btn btn-light">Cancelar</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data: function () {
     return {
-      form: new Form({
+      type: {
         name: "",
-      }),
+      },
     };
   },
+
+  methods: {
+    saveType() {
+      //Método responsável por pegar os dados e enviar para a rota da API responsável por salvá-los
+      if (this.type.name == "") {
+        return;
+      }
+
+      axios
+        .post("/api/type/store", { type: this.type })
+        .then((response) => {
+          if (response.status == 201) {
+            //retorna pra página de lista
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+
   mounted() {},
 };
 </script>

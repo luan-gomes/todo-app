@@ -21,11 +21,19 @@ window.Form = Form;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component(
-    "main-container",
-    require("./components/MainContainer.vue").default
-);
+Vue.component("app", require("./components/App.vue").default);
 Vue.component("type-form", require("./components/TypeForm.vue").default);
+Vue.component("type-list", require("./components/TypeList.vue").default);
+Vue.component(
+    "type-list-item",
+    require("./components/TypeListItem.vue").default
+);
+Vue.component("task-form", require("./components/TaskForm.vue").default);
+Vue.component("task-list", require("./components/TaskList.vue").default);
+Vue.component(
+    "task-list-item",
+    require("./components/TaskListItem.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
