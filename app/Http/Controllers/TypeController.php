@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Type;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Log;
 
@@ -96,8 +97,14 @@ class TypeController extends Controller
         $existingType = Type::find($id);
 
         if($existingType){
-            $existingType->delete();
-            return "Tipo excluído com sucesso!";
+            $existingTasks = Task::where('type_id',$existingType->id)->get();
+            if(count($existingTasks) === 0){
+                $existingType->delete();
+                return "Tipo excluído com sucesso!";
+               
+            } else {
+                return response("Este tipo tem tarefas vinculadas a ele. Você precisa excluí-las primeiro.", 400);
+            }
         }
 
         return "Tipo não encontrado.";

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Log;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::orderBy('deadline', 'DESC')->get();
+        return Task::orderBy('deadline', 'ASC')->get();
     }
 
     /**
@@ -84,8 +85,13 @@ class TaskController extends Controller
             $existingTask->description = (isset($request->task["description"]) && $request->task["description"])? $request->task["description"] : $existingTask->description;
             $existingTask->deadline = (isset($request->task["deadline"]) && $request->task["deadline"])? $request->task["deadline"] : $existingTask->deadline;
             $existingTask->type_id = (isset($request->task["type_id"]) && $request->task["type_id"])? $request->task["type_id"] : $existingTask->type_id;
-            $existingTask->completed = (isset($request->task["completed"]) && $request->task["completed"])? $request->task["completed"] : $existingTask->completed;
-            $existingTask->completed_at = (isset($request->task["completed_at"]) && $request->task["completed_at"])? $request->task["completed_at"] : $existingTask->completed_at;
+            if($request->task["completed"] == false){
+                $existingTask->completed = $request->task["completed"];
+                $existingTask->completed_at = null;
+            } else if ($request->task["completed"] == true){
+                $existingTask->completed = $request->task["completed"];
+                $existingTask->completed_at =date('Y/m/d');
+            }
             $existingTask->save();
 
             return $existingTask;
