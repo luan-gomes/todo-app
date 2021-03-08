@@ -23,6 +23,10 @@ Vue.component(
     "task-list-item",
     require("./components/TaskListItem.vue").default
 );
+Vue.component(
+    "buttons-container",
+    require("./components/ButtonsContainer.vue").default
+);
 
 const app = new Vue({
     el: "#app"
