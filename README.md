@@ -10,8 +10,10 @@ Esta aplicação foi construída utilizando Laravel, Vue.js e MySQL. Sendo assim
 -   Fazer o git clone do projeto;
 -   Rodar o comando "composer install";
 -   Executar o comando "npm install";
+-   Executar o comando "npm run dev";
 
 -   Criar o Banco de Dados;
+-   Renomear o arquiv .env.example para .env;
 -   Configurar no arquivo .env os seguintes campos com as informações do banco de dados criados:
 
     DB_CONNECTION | DB_HOST | DB_PORT | DB_DATABASE | DB_USERNAME | DB_PASSWORD
