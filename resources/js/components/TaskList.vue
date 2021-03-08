@@ -28,7 +28,8 @@
       <div v-for="(task, index) in tasks" :key="index">
         <task-list-item
           :task="task"
-          v-on:taskCompletedStatusChange="$emit('reloadList')"
+          :types="types"
+          v-on:taskUpdated="$emit('reloadList')"
           v-on:taskDeletedSuccessfully="$emit('reloadList')"
         />
       </div>

@@ -23,8 +23,8 @@
       <div v-for="(type, index) in types" :key="index">
         <type-list-item
           :type="type"
-          v-on:typeChange="$emit('reloadList')"
           v-on:typeHasTasks="showAlert()"
+          v-on:typeUpdated="$emit('reloadList')"
         />
       </div>
     </div>
