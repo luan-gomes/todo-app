@@ -24,11 +24,14 @@
         <div class="form-group">
           <label for="name">Tipo de tarefa</label>
           <div>
-            <select class="form-select" v-model="task.type_id" required>
-              <option v-for="type in types" :value="type.id" :key="type.id">
-                {{ type.name }}
-              </option>
-            </select>
+            <b-form-select v-model="task.type_id" class="mb-3">
+              <b-form-select-option
+                v-for="type in types"
+                :value="type.id"
+                :key="type.id"
+                >{{ type.name }}</b-form-select-option
+              >
+            </b-form-select>
           </div>
         </div>
         <div class="form-group">
@@ -46,7 +49,9 @@
             <button type="submit" class="btn btn-success">Salvar</button>
           </div>
           <div class="p-2">
-            <button class="btn btn-light">Cancelar</button>
+            <button @click="$emit('showTaskList')" class="btn btn-light">
+              Cancelar
+            </button>
           </div>
         </div>
       </form>

@@ -26,7 +26,9 @@
             <button type="submit" class="btn btn-success">Salvar</button>
           </div>
           <div class="p-2">
-            <button class="btn btn-light">Cancelar</button>
+            <button @click="$emit('showTypeList')" class="btn btn-light">
+              Cancelar
+            </button>
           </div>
         </div>
       </form>

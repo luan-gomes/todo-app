@@ -8,16 +8,20 @@
         @change="updateCompleted()"
       />
     </div>
-    <div class="d-flex align-items-center item-container col-11">
-      <div class="col-2 item">
+    <div
+      class="d-flex align-items-center justify-content-between item-container col-11"
+    >
+      <div class="col-2 item deadline d-flex justify-content-center">
         <span class="item-text">{{ task.deadline }}</span>
       </div>
 
-      <div class="col-2 item">
-        <span class="item-text">{{ task.type_id }}</span>
+      <div class="col-2 item d-flex justify-content-center">
+        <span class="item-text">{{
+          (name = types.find((type) => type.id === task.type_id)).name
+        }}</span>
       </div>
 
-      <div class="col-5 item">
+      <div class="col-5 item d-flex">
         <span class="item-text">{{ task.description }}</span>
       </div>
 
@@ -157,6 +161,7 @@ export default {
 .item-container {
   border: 2px solid #b4b4b4;
   margin: 10px 0;
+  padding: 0;
 }
 .check-completed {
   width: 25px;
