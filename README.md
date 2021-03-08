@@ -14,11 +14,6 @@ Esta aplicação foi construída utilizando Laravel, Vue.js e MySQL. Sendo assim
 -   Criar o Banco de Dados;
 -   Configurar no arquivo .env os seguintes campos com as informações do banco de dados criados:
 
-    DB_CONNECTION=
-    DB_HOST=
-    DB_PORT=
-    DB_DATABASE=
-    DB_USERNAME=
-    DB_PASSWORD=
+    DB_CONNECTION | DB_HOST | DB_PORT | DB_DATABASE | DB_USERNAME | DB_PASSWORD
 
 -   Executar o comando "php artisan serv" para subir um servidor local ou utilizar um de sua preferência.
