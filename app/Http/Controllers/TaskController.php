@@ -117,4 +117,13 @@ class TaskController extends Controller
 
         return "Tarefa não encontrada.";
     }
+
+    public function getTasksFiltered($filter)
+    {
+        if($filter === "all"){
+            return Task::orderBy('deadline', 'ASC')->get();
+        }
+
+        return Task::where('type_id', $filter)->orderBy('deadline', 'ASC')->get();
+    }
 }

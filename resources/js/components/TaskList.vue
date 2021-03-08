@@ -8,6 +8,24 @@
             </div>
         </div>
         <div class="component-container">
+            <div>
+                <span>Filtro</span>
+                <select
+                    class="form-select"
+                    v-model="filter"
+                    required
+                    @change="getFiltered()"
+                >
+                    <option value="all">Todos</option>
+                    <option
+                        v-for="type in types"
+                        :value="type.id"
+                        :key="type.id"
+                    >
+                        {{ type.name }}
+                    </option>
+                </select>
+            </div>
             <div v-for="(task, index) in tasks" :key="index">
                 <task-list-item
                     :task="task"
@@ -22,7 +40,24 @@
 <script>
 import TaskListItem from "./TaskListItem.vue";
 export default {
-    props: ["tasks"],
-    components: { TaskListItem }
+    data() {
+        return {
+            filter: ""
+        };
+    },
+    props: ["tasks", "types"],
+    components: { TaskListItem },
+    methods: {
+        getFiltered() {
+            axios
+                .get("api/task/filtered/" + this.filter)
+                .then(response => {
+                    this.tasks = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
 };
 </script>

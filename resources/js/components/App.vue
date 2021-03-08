@@ -1,14 +1,15 @@
 <template>
     <div class="container-app">
-        <div class="d-flex justify-content-center">
-            <!--  <type-form></type-form>-->
-            <!--<type-list
+        <div class="d-flex flex-direction-column justify-content-center">
+            <type-form></type-form>
+            <type-list
                 :types="types"
                 v-on:reloadList="getTypeList()"
-            ></type-list>-->
-            <!--<task-form :types="types"></task-form>-->
+            ></type-list>
+            <task-form :types="types"></task-form>
             <task-list
                 :tasks="tasks"
+                :types="types"
                 v-on:reloadList="getTaskList()"
             ></task-list>
         </div>
